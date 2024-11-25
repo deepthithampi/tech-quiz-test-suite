@@ -1,0 +1,20 @@
+[
+    {
+      "question": "What is React?",
+      "answers": [
+        { "text": "A library", "isCorrect": true },
+        { "text": "A framework", "isCorrect": false },
+        { "text": "A runtime", "isCorrect": false },
+        { "text": "A language", "isCorrect": false }
+      ]
+    },
+    {
+      "question": "What is Node.js?",
+      "answers": [
+        { "text": "A runtime", "isCorrect": true },
+        { "text": "A language", "isCorrect": false },
+        { "text": "A library", "isCorrect": false },
+        { "text": "A framework", "isCorrect": false }
+      ]
+    }
+  ]

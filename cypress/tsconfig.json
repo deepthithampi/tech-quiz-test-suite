@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "strict": true,
+      "baseUrl": "../node_modules",
+      "types": ["cypress"]
+    },
+    "include": ["**/*.cy.ts", "**/*.cy.tsx", "../node_modules/cypress"]
+  }
