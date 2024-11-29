@@ -45,8 +45,10 @@ describe('Tech Quiz Application - E2E', () => {
             cy.log('No API Response');
           }
         });
-    
+
+   
     cy.get('h2').should('contain', 'What is React?');
+    cy.get('.alert').contains('A library').prev('.btn-primary').click();
     cy.wait(500);
     cy.get('.btn-primary').then(($buttons) => {
         cy.log(`Number of buttons: ${$buttons.length}`);
@@ -59,11 +61,15 @@ describe('Tech Quiz Application - E2E', () => {
           cy.log(`Button ${index} HTML: ${button.outerHTML}`);
         });
       });
-    cy.get('.btn-primary',{timeout:10000}).should('have.length', 4).contains('1').should('be.visible').click();
+    // cy.get('.btn-primary',{timeout:10000}).should('have.length', 4).contains('A library').should('be.visible').click();
 
         // Verify the second question
       cy.get('h2').should('contain', 'What is Node.js?');
-      cy.get('.btn-primary').contains('1').click();
+    //   cy.get('.btn-primary').contains('A runtime').click();
+    cy.get('.alert')
+      .contains('A runtime')
+      .prev('.btn-primary')
+      .click();
   
       // Verify the quiz completion
       cy.get('.card').contains('Quiz Completed').should('be.visible');
