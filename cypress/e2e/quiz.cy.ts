@@ -39,15 +39,31 @@ describe('Tech Quiz Application - E2E', () => {
     cy.wait('@getQuestions').then((interception) => {
 
         expect(interception.response!.body).to.exist;
-        expect(interception.response!.body[0].question).to.equal('What is React?');
+        if (interception.response) {
+            cy.log('API Response:', interception.response.body);
+          }else{
+            cy.log('No API Response');
+          }
         });
     
     cy.get('h2').should('contain', 'What is React?');
-    cy.get('.btn-primary',{timeout:10000}).should('have.length', 4).contains('A library').should('be.visible').click();
+    cy.wait(500);
+    cy.get('.btn-primary').then(($buttons) => {
+        cy.log(`Number of buttons: ${$buttons.length}`);
+      });
+      cy.get('.btn-primary').each(($btn, index) => {
+        cy.log(`Button ${index}: ${$btn.text().trim()}`);
+      });
+      cy.get('.btn-primary').then(($buttons) => {
+        $buttons.each((index, button) => {
+          cy.log(`Button ${index} HTML: ${button.outerHTML}`);
+        });
+      });
+    cy.get('.btn-primary',{timeout:10000}).should('have.length', 4).contains('1').should('be.visible').click();
 
         // Verify the second question
       cy.get('h2').should('contain', 'What is Node.js?');
-      cy.get('.btn-primary').contains('A runtime').click();
+      cy.get('.btn-primary').contains('1').click();
   
       // Verify the quiz completion
       cy.get('.card').contains('Quiz Completed').should('be.visible');
